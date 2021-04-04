@@ -2,7 +2,6 @@ import { google } from 'googleapis';
 
 import privatekey from '../service-account-credentials.json';
 
-// configure a JWT auth client
 let jwtClient = new google.auth.JWT(
   privatekey.client_email,
   undefined,
