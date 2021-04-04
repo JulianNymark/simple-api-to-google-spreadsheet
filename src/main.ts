@@ -1,8 +1,22 @@
-// import fs from 'fs';
-// import readline from 'readline';
 import { google } from 'googleapis';
 
 import privatekey from '../service-account-credentials.json';
+
+let args = process.argv.slice(2);
+
+if (args.length > 2 || args.length < 1) {
+  console.error(`
+  USAGE:
+    npm start <spreadsheet_id> [range='A:B']
+  `)
+  throw new Error('incorrect parameters');
+}
+
+const spreadsheetId = args[0]
+const range = args[1] ?? 'A:B'
+
+console.log(`spreadsheet: ${spreadsheetId}`);
+console.log(`range: ${range}`);
 
 // configure a JWT auth client
 let jwtClient = new google.auth.JWT(
@@ -23,12 +37,12 @@ jwtClient.authorize(function (err, tokens) {
 
 const sheets = google.sheets('v4');
 
-const getData = async (range: string) => {
+const getData = async () => {
   const promise: Promise<any[][]> = new Promise((resolve, reject) => {
     sheets.spreadsheets.values.get(
       {
         auth: jwtClient,
-        spreadsheetId: '1qcmxYjLvM4dXmT4aKg3Lkc_BJdUhItQrvR1tWXmIbpA',
+        spreadsheetId,
         range,
       },
       (err, res) => {
@@ -48,12 +62,12 @@ const getData = async (range: string) => {
   return promise;
 };
 
-const appendData = async (range: string, rowsData: any[][]) => {
+const appendData = async (rowsData: any[][]) => {
   const promise: Promise<void> = new Promise((resolve, reject) => {
     sheets.spreadsheets.values.append(
       {
         auth: jwtClient,
-        spreadsheetId: '1qcmxYjLvM4dXmT4aKg3Lkc_BJdUhItQrvR1tWXmIbpA',
+        spreadsheetId,
         range,
         valueInputOption: 'RAW',
         insertDataOption: 'INSERT_ROWS',
@@ -72,11 +86,11 @@ const appendData = async (range: string, rowsData: any[][]) => {
 };
 
 (async () => {
-  let data = await getData('A:B');
+  let data = await getData();
   console.log('data:', data);
 
-  await appendData('A:B', [['hello!', 42, 4.2, 'true', true]]);
+  await appendData([['hello!', 42, 4.2, 'true', true]]);
 
-  data = await getData('A:B');
+  data = await getData();
   console.log('data:', data);
 })();
