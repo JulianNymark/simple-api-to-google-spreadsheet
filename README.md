@@ -70,6 +70,16 @@ response:
 }
 ```
 
-### CURL test 
+### CURL examples 
+
+insert data:
+```shell
+curl -s localhost:3001/rows -d '{"rows":[["2020-01-04","fantastic"]]}' -H 'Content-Type:application/json'
+```
+
+get data:
+```shell
+curl -s localhost:3001/rows
+```
 
 ![working curl example](./README/working_curl_test.png)
