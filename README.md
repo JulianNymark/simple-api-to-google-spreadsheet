@@ -44,6 +44,10 @@ npm start <spreadsheet_id> [range='A:B']
 :warning: the current version of this API has _no_ authorization, meaning anyone sending a properly formed http request can _tamper_ with your spreadsheet! it's very bare bones.
 
 ### POST /rows
+headers:
+
+- Content-Type:application/json
+
 body:
 ```json
 {
@@ -65,3 +69,7 @@ response:
         ]
 }
 ```
+
+### CURL test 
+
+![working curl example](./README/working_curl_test.png)
