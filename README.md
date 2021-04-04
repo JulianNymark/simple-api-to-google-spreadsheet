@@ -29,7 +29,7 @@ has the spreadsheet id:
 
 4. **Share it!**. For the service-account to get access to this spreadsheet, you must share it with the service-account. Inside the `service-account-credentials.json` file, there should be a property called `client_email`, share the document with this email from the spreadsheet web GUI.
 
-5. **Run it! :heavy_check_mark: :100: :tada:** The server is written in Node.js, so to run it, you Must have `node`, `npm`.
+5. **Run it! :heavy_check_mark: :100: :tada:** The server is written in Node.js, so to run it, you must have `node`, `npm`.
 
 ```shell
 npm i
@@ -40,6 +40,8 @@ npm start <spreadsheet_id> [range='A:B']
 ## API doc
 
 :warning: this doc shows example values with a range `A:B` (aka. data stored in the _first two columns_)
+
+:warning: the current version of this API has _no_ authorization, meaning anyone sending a properly formed http request can _tamper_ with your spreadsheet! it's very bare bones.
 
 ### POST /rows
 body:
