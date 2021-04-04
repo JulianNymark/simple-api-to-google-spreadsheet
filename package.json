@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node main.js"
+    "build": "tsc -p .",
+    "start": "npm run build && node dist/src/main.js"
   },
   "keywords": [],
   "author": "",
