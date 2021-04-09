@@ -49,8 +49,8 @@ the `config.sample.json` file should list all the potential configuration proper
 ```json
 {
     "port": 3001, // optional! if removed it defaults to 3001
-    "spreadsheet_id": "YOUR_SPREADSHEET_ID",
-    "range": "A:B",
+    "spreadsheet_id": "YOUR_SPREADSHEET_ID", // required!
+    "range": "A:B", // required!
     "api_keys": ["Key1", "Key2"] // optional! if removed or set to [] it will disable authorization
 }
 ```
