@@ -1,4 +1,4 @@
-import express from "express";
+import express, { RequestHandler } from "express";
 import morgan from "morgan";
 import cors from "cors";
 import helmet from "helmet";
@@ -11,7 +11,7 @@ import {
   port as portConfig,
 } from "../config.json";
 import { title } from "./title";
-import { authorize } from "./authorization";
+import { authorizeApiKey } from "./authorization";
 
 const useApiKeys = !!api_keys?.length;
 const port = portConfig ?? 3001;
@@ -22,8 +22,11 @@ api.use(cors()); // comment this out if you want more security
 api.use(morgan("combined"));
 api.use(helmet.hidePoweredBy()); // swap with api.use(helmet()) if you want more security
 
+let noopMiddleware: RequestHandler = (req, res, next) => next();
+let authorize = noopMiddleware;
 if (useApiKeys) {
-  api.use(authorize);
+  authorize = authorizeApiKey;
+  // api.use(authorize); // uncomment if you want to authorize _every_ endpoint
 }
 
 api.get("/rows", async (req, res) => {
@@ -31,7 +34,7 @@ api.get("/rows", async (req, res) => {
   res.json({ rows: data });
 });
 
-api.post("/rows", async (req, res) => {
+api.post("/rows", authorize, async (req, res) => {
   if (req.headers["content-type"] !== "application/json") {
     res.send('Missing request header: "Content-Type:application/json"');
     return;

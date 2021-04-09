@@ -60,7 +60,7 @@ the `config.sample.json` file should list all the potential configuration proper
 | :warning: | this doc shows example values with a range `A:B` (aka. data stored in the _first two columns_) |
 |-|-|
 
-| :warning: | the current version of this API has _no_ authorization, meaning anyone sending a properly formed http request can _tamper_ with your spreadsheet! it's very bare bones. |
+| :warning: | by default the API is permissive, so the examples show no Authorization, see the configuration to change the defaults & make the API more secure |
 |-|-|
 
 ### POST /rows
