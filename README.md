@@ -8,7 +8,11 @@ This project creates an API server that sits between a google spreadsheet and yo
 
 ## run
 
-:warning: you must do 5 _extremely painful_ manual steps to get this server to work! :warning:
+| :information_source: | all CLI examples try to follow this [command line syntax](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/command-line-syntax-key)  |
+|-|-|
+
+| :warning: | you must do 5 _extremely painful_ manual steps to get this server to work! |
+|-|-|
 
 1. **Who are you?!** To run, the server expects a service-account credential JSON file to reside in the project root (where .git is located). The file _must_ be named `service-account-credentials.json`. To create and download this JSON file, follow this guide: https://cloud.google.com/docs/authentication/production#create_service_account
 
@@ -25,7 +29,7 @@ has the spreadsheet id:
 1qcmxYjLvM4dXmT4aKg3lkc_BJdUhItQrvR1tWXmIbbA
 ```
 
-3. (optional) **What _range_ inside the spreadsheet?!?!** You have to define where the valuable data resides _within_ the spreadsheet, to get an idea of ranges, read https://spreadsheet.dev/range-in-google-sheets. The default of this is `A:B` (assumes data is stored in the _first two columns inside a contiguous block of rows_ (no empty rows) of data). Ranges let you re-use existing spreadsheets that might not look "clean". substitute the `[range='A:B']` part of the last step with your desired range.
+3. (optional) **What _range_ inside the spreadsheet?!?!** You have to define where the valuable data resides _within_ the spreadsheet, to get an idea of ranges, read https://spreadsheet.dev/range-in-google-sheets. The default of this is `A:B` (assumes data is stored in the _first two columns inside a contiguous block of rows_ (no empty rows) of data). Ranges let you re-use existing spreadsheets that might not look "clean". substitute the `[range]` part of the last step with your desired range.
 
 4. **Share it!**. For the service-account to get access to this spreadsheet, you must share it with the service-account. Inside the `service-account-credentials.json` file, there should be a property called `client_email`, share the document with this email from the spreadsheet web GUI.
 
@@ -33,15 +37,16 @@ has the spreadsheet id:
 
 ```shell
 npm i
-npm start <spreadsheet_id> [range='A:B']
+npm start <spreadsheet_id> [range]
 ```
-
 
 ## API doc
 
-:warning: this doc shows example values with a range `A:B` (aka. data stored in the _first two columns_)
+| :warning: | this doc shows example values with a range `A:B` (aka. data stored in the _first two columns_) |
+|-|-|
 
-:warning: the current version of this API has _no_ authorization, meaning anyone sending a properly formed http request can _tamper_ with your spreadsheet! it's very bare bones.
+| :warning: | the current version of this API has _no_ authorization, meaning anyone sending a properly formed http request can _tamper_ with your spreadsheet! it's very bare bones. |
+|-|-|
 
 ### POST /rows
 headers:
