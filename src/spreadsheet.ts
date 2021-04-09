@@ -14,7 +14,7 @@ jwtClient.authorize(function (err, tokens) {
     console.error(err);
     return;
   } else {
-    console.log('Successfully connected!');
+    console.log('googleapis JWT client connected!');
   }
 });
 

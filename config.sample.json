@@ -1,0 +1,6 @@
+{
+    "port": 3001,
+    "spreadsheet_id": "YOUR_SPREADSHEET_ID",
+    "range": "A:B", 
+    "api_keys": ["PUT_YOUR_SECRET_API_KEYS_HERE"]
+}
