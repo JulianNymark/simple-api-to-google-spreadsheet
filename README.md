@@ -29,7 +29,7 @@ has the spreadsheet id:
 1qcmxYjLvM4dXmT4aKg3lkc_BJdUhItQrvR1tWXmIbbA
 ```
 
-3. (optional) **What _range_ inside the spreadsheet?!?!** You have to define where the valuable data resides _within_ the spreadsheet, to get an idea of ranges, read https://spreadsheet.dev/range-in-google-sheets. The default of this is `A:B` (assumes data is stored in the _first two columns inside a contiguous block of rows_ (no empty rows) of data). Ranges let you re-use existing spreadsheets that might not look "clean". substitute the `[range]` part of the last step with your desired range.
+3. (optional) **What _range_ inside the spreadsheet?!?!** You have to define where the valuable data resides _within_ the spreadsheet, to get an idea of ranges, read https://spreadsheet.dev/range-in-google-sheets. The default of this is `A:B` (assumes data is stored in the _first two columns inside a contiguous block of rows_ (no empty rows) of data). Ranges let you re-use existing spreadsheets that might not look "clean". substitute the `[<range>]` part of the last step with your desired range.
 
 4. **Share it!**. For the service-account to get access to this spreadsheet, you must share it with the service-account. Inside the `service-account-credentials.json` file, there should be a property called `client_email`, share the document with this email from the spreadsheet web GUI.
 
@@ -37,7 +37,7 @@ has the spreadsheet id:
 
 ```shell
 npm i
-npm start <spreadsheet_id> [range]
+npm start <spreadsheet_id> [<range>]
 ```
 
 ## API doc
