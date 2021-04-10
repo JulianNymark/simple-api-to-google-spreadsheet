@@ -38,8 +38,7 @@ has the spreadsheet id:
 4. **Run it! :heavy_check_mark: :100: :tada:** The server is written in Node.js, so to run it, you must have `node`, `npm`.
 
 ```shell
-npm i
-npm start
+npm i && npm run build && npm run start
 ```
 
 ### configuration
